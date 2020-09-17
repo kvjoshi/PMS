@@ -6,9 +6,7 @@
 
                                     echo $myusername = mysqli_real_escape_string($db,$_POST['username']);
                                     echo  $mypassword = mysqli_real_escape_string($db,$_POST['password']); 
-
-
-                                    $query = mysqli_query($con,"select * from user where u_username ='".$_POST['username']."' and u_password ='".$_POST['password']."'");
+                                    $query = mysqli_query($db,"select * from user where u_username ='".$_POST['username']."' and u_password ='".$_POST['password']."'");
                                     $row = mysqli_num_rows($query);
 
                                     if($row>0)
