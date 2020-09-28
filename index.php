@@ -1,30 +1,30 @@
 <?php
-    include("config.php");
-    session_start();
-                                 if(isset($_POST['submit']))
-                                {   
-
-                                    echo $myusername = mysqli_real_escape_string($db,$_POST['username']);
-                                    echo  $mypassword = mysqli_real_escape_string($db,$_POST['password']); 
-                                    $query = mysqli_query($db,"select * from user where u_username ='".$_POST['username']."' and u_password ='".$_POST['password']."'");
-                                    $row = mysqli_num_rows($query);
-
-                                    if($row>0)
-                                    {
-                                        $data = mysqli_fetch_array($query);
-                                        $_SESSION['login_user'] = $data['u_username'];
-                                        
-                                        //$_SESSION['role'] = $data['role'];
-                                        header("location:dashboard.php");
-                                    }
-                                    else
-                                    {
-                                
-                                    $error = "Your Login Name or Password is invalid";
-                                    
-                                    }
-                                 }
-                                ?>
+   include("config.php");
+   session_start();
+   
+   if(isset($_POST['submit'])) {
+      // username and password sent from form 
+      
+     echo $myusername = mysqli_real_escape_string($db,$_POST['username']);
+      echo  $mypassword = mysqli_real_escape_string($db,$_POST['password']); 
+      
+      $sql = "SELECT u_id FROM user WHERE u_username = '$myusername' and u_password = '$mypassword'";
+      $result = mysqli_query($db,$sql);
+      $row = mysqli_fetch_assoc($result);      
+      $count = mysqli_num_rows($result);
+      
+      // If result matched $myusername and $mypassword, table row must be 1 row
+		
+      if($count == 1) {
+         session_register("myusername");
+         $_SESSION['login_user'] = $myusername;
+         
+         header("location: dashboard.php");
+      }else {
+         $error = "Your Login Name or Password is invalid";
+      }
+   }
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>

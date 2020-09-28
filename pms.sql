@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 17, 2020 at 07:11 PM
+-- Generation Time: Sep 28, 2020 at 03:23 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.9
 
@@ -20,6 +20,17 @@ SET time_zone = "+00:00";
 --
 -- Database: `pms`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `accounts`
+--
+
+CREATE TABLE `accounts` (
+  `a_id` int(11) NOT NULL,
+  `a_name` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -49,6 +60,12 @@ INSERT INTO `user` (`u_id`, `u_name`, `u_nickname`, `u_username`, `u_password`, 
 --
 
 --
+-- Indexes for table `accounts`
+--
+ALTER TABLE `accounts`
+  ADD PRIMARY KEY (`a_id`);
+
+--
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
@@ -57,6 +74,12 @@ ALTER TABLE `user`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `accounts`
+--
+ALTER TABLE `accounts`
+  MODIFY `a_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `user`
